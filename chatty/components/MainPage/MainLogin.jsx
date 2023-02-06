@@ -43,7 +43,7 @@ export default function MainLogin () {
                                 </Link>
                             </p>
                             <p>
-                                <Link className="text-sm text-blue-600 hover:underline" href={"#"}>
+                                <Link className="text-sm text-blue-600 hover:underline" href={"/singup"}>
                                     Create Account
                                 </Link>
                             </p>
