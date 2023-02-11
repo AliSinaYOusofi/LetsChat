@@ -177,12 +177,9 @@ export default function MainSignUp() {
     }
 
     return (
-        <>
-            <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                Create Account
-            </h1>
-                
-            <form className="flex md:flex-row flex-col flex-wrap justify-center items-center bg-[#d1d3ce]
+        <>  
+            <form className="flex md:flex-row flex-col flex-wrap justify-center items-center
+            bg-gray-50
             h-full w-[92%] mt-3 rounded-md mx-auto gap-x-14 p-4
             transition-all duration-300 " >
                 
@@ -190,7 +187,7 @@ export default function MainSignUp() {
                 md:px-0">
                     
                     
-                    <div className="w-full">
+                    <div className="w-full ">
                         <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 ">Username </label>
                         <input onChange={(e) => setUsername(e.target.value)} type="text" name="username" id="username" placeholder="username e g jhon" className="bg-gray-50 border-none outline-none border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"  />
                     </div>
@@ -213,8 +210,6 @@ export default function MainSignUp() {
                     </div>
                     
                 </div>
-                
-                
                 <div  className="flex items-center justify-center w-[70%] mx-auto mt-4 group">
                     <label  htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 bg-[#f0f1ed]  rounded-lg cursor-pointer">
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
