@@ -23,9 +23,6 @@ export default function MainSignUp() {
     
     let imageFileRef = useRef(null);
     const [imageDetails, setImageDetails] = useState({});
-
-    let publicRef = React.useRef(null);
-    let privateRef = React.useRef(null);
     
     const handleSubmit = async (e) => {
         
@@ -188,7 +185,7 @@ export default function MainSignUp() {
                             <input className=" w-full text-sm text-gray-400  ml-2" id="file_input" type="file" placeholder='Select Profile Image' onChange={(e) => setImageDetails(e.target.value)}/>
                         </div>
                         <Link href={"/"}>
-                            <button type="submit" className="block w-full bg-indigo-400 transition-all duration-300 hover:bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Login</button>
+                            <button type="submit" className="block w-full bg-indigo-400 transition-all duration-300 hover:bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Create Account</button>
                             <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">Forgot Password ?</span>
                         </Link>
                     </form>

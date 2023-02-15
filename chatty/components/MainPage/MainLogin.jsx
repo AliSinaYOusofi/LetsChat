@@ -11,7 +11,9 @@ export default function MainLogin () {
     const passwordRef = useRef(null);
 
     const showPassword = () => {
+        
         setHide(prev => !prev);
+        
         if (passwordRef.current) {
             if (passwordRef.current.type === "password")
                 passwordRef.current.type = "text";
@@ -21,7 +23,6 @@ export default function MainLogin () {
     }
 
     const handleLogin = () => {
-        alert(email, password);
     }
 
     return (
@@ -94,7 +95,6 @@ export default function MainLogin () {
                                 onClick={handleLogin}
                                 >
                                 Log in
-                                
                             </button>
                         </div>
                     </div>
