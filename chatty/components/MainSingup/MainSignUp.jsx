@@ -7,6 +7,9 @@ import {useRouter} from 'next/navigation';
 
 import axios from 'axios';
 import { useChatProvider } from '../../context/globalContext';
+import { usernameValidator } from '@/validators/usernameValidator';
+import { emailValidator } from '@/validators/emailValidator';
+import { passwordValidator } from '@/validators/passwordValidator';
 
 export default function MainSignUp() {
 
@@ -25,9 +28,7 @@ export default function MainSignUp() {
     const [imageDetails, setImageDetails] = useState({});
     
     const handleSubmit = async (e) => {
-        
-        toast.loading("updating your credentials"); // show be dismissed when validation is success
-        
+                
         e.preventDefault(); // prevent the refresh behaviour
         
         let isValid = false;
