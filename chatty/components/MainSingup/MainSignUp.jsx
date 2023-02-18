@@ -10,6 +10,8 @@ import { useChatProvider } from '../../context/globalContext';
 import { usernameValidator } from '@/validators/usernameValidator';
 import { emailValidator } from '@/validators/emailValidator';
 import { passwordValidator } from '@/validators/passwordValidator';
+import Toast from '../ToastMessages/Toast';
+import {ReactComponent as error} from '../../public/error-svgrepo-com.svg'
 
 export default function MainSignUp() {
 
@@ -29,10 +31,9 @@ export default function MainSignUp() {
     
     const handleSubmit = async (e) => {
         
-        let isValid = false;
+        e.preventDefault();
 
-        await sleep(2000);
-        toast.dismiss();
+        let isValid = false;
 
         if (!usernameValidator(username) && username) toast.error("user name can't have spaces", {duration: 2000});
         
@@ -184,7 +185,7 @@ export default function MainSignUp() {
                             <input className=" w-full text-sm text-gray-400  ml-2" id="file_input" type="file" placeholder='Select Profile Image' onChange={(e) => setImageDetails(e.target.value)}/>
                         </div>
                         <Link href={"/"}>
-                            <button type="submit" className="block w-full bg-indigo-400 transition-all duration-300 hover:bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Create Account</button>
+                            <button type="submit" onSubmit={handleSubmit} className="block w-full bg-indigo-400 transition-all duration-300 hover:bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Create Account</button>
                             <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">Forgot Password ?</span>
                         </Link>
                     </form>
