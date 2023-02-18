@@ -28,8 +28,6 @@ export default function MainSignUp() {
     const [imageDetails, setImageDetails] = useState({});
     
     const handleSubmit = async (e) => {
-                
-        e.preventDefault(); // prevent the refresh behaviour
         
         let isValid = false;
 
