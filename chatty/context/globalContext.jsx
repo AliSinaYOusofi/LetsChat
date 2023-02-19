@@ -1,10 +1,15 @@
-import { useContext, createContext } from "react";
+"use client";
+
+import { useContext, createContext, useState } from "react";
 
 export const chatContext = createContext({});
 
 export const Chatty = ({children}) => {
+
+    const [showToast, setShowToast] = useState(false);
+
     return (
-        <chatContext.Provider>
+        <chatContext.Provider value={{showToast, setShowToast}}>
             {children}
         </chatContext.Provider>
     );
