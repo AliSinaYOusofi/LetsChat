@@ -11,7 +11,8 @@ import { usernameValidator } from '@/validators/usernameValidator';
 import { emailValidator } from '@/validators/emailValidator';
 import { passwordValidator } from '@/validators/passwordValidator';
 import Toast from '../ToastMessages/Toast';
-import {ReactComponent as error} from '../../public/error-svgrepo-com.svg'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function MainSignUp() {
 
@@ -25,19 +26,24 @@ export default function MainSignUp() {
     const [email, setEmail] = useState("");
     
     const handleSubmit = async (e) => {
-        alert(showToast)
+
         e.preventDefault();
         
-        if (!usernameValidator(username)) return setShowToast(true);
+
+        if (fullName.length <= 0) return toast.error("Please provide your full-name");
+        
+        else if (!usernameValidator(username)) return toast.error("Please provide a username with no spaces");
         
         else if (password && confirmPassword) {
-            if (! passwordValidator(password) || ! passwordValidator(confirmPassword)) toast.error("invalid password, 1 uppercase, one number and length >= 8");
-            else if(password !== confirmPassword) toast.error("passwords don't match", { duration: 2000});
-            else isValid = true;
+            if(password !== confirmPassword) return toast.error("passwords don't match", { duration: 2000});
+            else if (! passwordValidator(password) || ! passwordValidator(confirmPassword)) toast.error("invalid password, 1 uppercase, one number and length >= 8");
         }
-        else if(password && ! confirmPassword)  toast.error("please provide a confirm password.");
+
+        else if (! emailValidator(email)) return toast.error("invalid email provided")
+
+        else if(password && ! confirmPassword)  return toast.error("please provide a confirm password.");
         
-        else if(!password && confirmPassword)  toast.error("please provide a password.");
+        else if(!password && confirmPassword) return toast.error("please provide a password.");
         
         else if(! confirmPassword && ! password && !username) return toast.error("firt make some changes then click");
                 
@@ -125,16 +131,21 @@ export default function MainSignUp() {
                             </svg>
                             <input className="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
                         </div>
-                        
+                        <div className="flex mt-4 items-center border-2 py-2 px-3 rounded-2xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fillRule="evenodd"
+                                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                    clipRule="evenodd" />
+                            </svg>
+                            <input className="pl-2 outline-none border-none" type="text" name="" id="" placeholder="Confirm password" onChange={(e) => setConfirmPassword(e.target.value)}/>
+                        </div>
                         <button type="button" onClick={handleSubmit} className="block w-full bg-indigo-400 transition-all duration-300 hover:bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Create Account</button>
-                        <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">Forgot Password ?</span>
-                        
+                        <Link href={"/"} className="text-sm ml-2 hover:text-blue-500 cursor-pointer">Already have an account? login</Link>
                     </form>
                 </div>
             </div>
-            {
-                showToast || <Toast />
-            }
+            <ToastContainer />
        </>
     )
 }
