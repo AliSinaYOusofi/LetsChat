@@ -10,13 +10,11 @@ import { useChatProvider } from '../../context/globalContext';
 import { usernameValidator } from '@/validators/usernameValidator';
 import { emailValidator } from '@/validators/emailValidator';
 import { passwordValidator } from '@/validators/passwordValidator';
-import Toast from '../ToastMessages/Toast';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function MainSignUp() {
 
-    const {showToast, setShowToast} = useChatProvider();
     const router = useRouter();
     
     const [username, setUsername] = useState("");
@@ -29,7 +27,6 @@ export default function MainSignUp() {
 
         e.preventDefault();
         
-
         if (fullName.length <= 0) return toast.error("Please provide your full-name");
         
         else if (!usernameValidator(username)) return toast.error("Please provide a username with no spaces");
@@ -47,30 +44,22 @@ export default function MainSignUp() {
         
         else if(! confirmPassword && ! password && !username) return toast.error("firt make some changes then click");
                 
-    
-        return;
-        // this data will be sent to back-end
-        const dataToSend = {
-            token,
-            username: username || null,
-            password: password || null,
-            visibility: visibility || null,
-            place: place || null,
-            bio,
-            university: university || null,
-            profileUrl,
-            jobTitle
+        const newUserRegData = {
+            username,
+            password,
+            confirmPassword,
+            fullName,
+            email
         }
         
         try {
             const response = await axios.post("/api/update_profile", {
-               dataToSend
+                newUserRegData
             });
 
             const {message} = await response.data
             if (message === "updated") {
                 toast.success("you profile has been updated");
-                await sleep(1000);
                 router.refresh();
             }
             else if(message === "queryError") toast.error("503 internal server error.");
@@ -82,8 +71,7 @@ export default function MainSignUp() {
     return (
         <>  
             <div className="h-screen md:flex">
-                <div
-                    className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
+                <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
                     <div>
                         <h1 className="text-white font-bold text-4xl font-sans">LetsChat</h1>
                         <p className="text-white mt-1">The most popular Chat Web Application</p>
@@ -96,8 +84,6 @@ export default function MainSignUp() {
                 </div>
                 <div className="flex md:w-1/2 justify-center py-10 items-center bg-white">
                     <form className="bg-white">
-                        <h1 className="text-gray-800 font-bold text-2xl mb-1">Create An Account</h1>
-                        <p> </p>
                         <div className="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
                                 fill="currentColor">
