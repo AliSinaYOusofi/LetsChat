@@ -1,7 +1,11 @@
 "use client";
 
+import { emailValidator } from "@/validators/emailValidator";
+import { passwordValidator } from "@/validators/passwordValidator";
 import Link from "next/link";
 import { useRef, useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function MainLogin () {
 
@@ -23,6 +27,8 @@ export default function MainLogin () {
     }
 
     const handleLogin = () => {
+        if (! emailValidator(email)) return toast.error("invalid email provided.");
+        else if (! passwordValidator(password))  return toast.error("please provide a password.");
     }
 
     return (
@@ -101,6 +107,7 @@ export default function MainLogin () {
                 </div>
             </div>
         </div>
+        <ToastContainer />
         </>
     )
 }
