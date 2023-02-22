@@ -26,7 +26,7 @@ export default function MainSignUp() {
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        
+        return router.push("/homepage")
         if (fullName.length <= 0) return toast.error("Please provide your full-name");
         
         else if (!usernameValidator(username)) return toast.error("Please provide a username with no spaces");
