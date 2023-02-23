@@ -1,9 +1,10 @@
 import MainLogin from "@/components/MainPage/MainLogin";
+import Sidebar from "@/components/Sidebar/Sidebar";
 
 export default function page() {
   return (
    <>
-    <h1> Main homepage </h1>
+    <Sidebar />
    </>
   )
 }
