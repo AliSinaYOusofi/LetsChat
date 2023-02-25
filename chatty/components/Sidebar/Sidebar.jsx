@@ -3,7 +3,7 @@ import React, { useRef, useState } from "react";
 
 export default function Sidebar() {
 
-    const [closeMenu, setCloseMenu] = useState(false);
+    const [closeMenu, setCloseMenu] = useState(true);
     const sideBarRef = useRef(null);
 
     const handleSidebar = () => {
@@ -35,7 +35,7 @@ export default function Sidebar() {
                                 <li className="rounded-md transition-all duration-200 hover:bg-gray-100">
                                     <a
                                         href="#"
-                                        className="flex items-center p-2 space-x-3 rounded-md"
+                                        className="flex items-center p-2 space-x-3 rounded-md active:bg-gray-100"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ export default function Sidebar() {
                                 <li className="rounded-md transition-all duration-200 hover:bg-gray-100">
                                     <a
                                         href="#"
-                                        className="flex items-center p-2 space-x-3 rounded-md"
+                                        className="flex items-center p-2 space-x-3 rounded-md active:bg-gray-100"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -79,7 +79,7 @@ export default function Sidebar() {
                                 <li className="rounded-md transition-all duration-200 hover:bg-gray-100">
                                     <a
                                         href="#"
-                                        className="flex items-center p-2 space-x-3 rounded-md"
+                                        className="flex items-center p-2 space-x-3 rounded-md active:bg-gray-100"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,7 @@ export default function Sidebar() {
                                 <li className="rounded-md transition-all duration-200 hover:bg-gray-100">
                                     <a
                                         href="#"
-                                        className="flex items-center p-2 space-x-3 rounded-md"
+                                        className="flex items-center p-2 space-x-3 rounded-md active:bg-gray-100"
                                     >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
