@@ -1,8 +1,8 @@
-import MainLogin from "@/components/MainPage/MainLogin";
+import ChatMain from "@/components/Chat/ChatMain";
 import Navbar from "@/components/Navbar/Navbar";
 import OnlineMembers from "@/components/OnlineMembers/OnlineMembers";
 import Rooms from "@/components/Rooms/Rooms";
-import Sidebar from "@/components/Sidebar/Sidebar";
+
 
 export default function page() {
   return (
@@ -13,6 +13,7 @@ export default function page() {
         <Rooms />
         <OnlineMembers />
       </div>
+      <ChatMain />
    </div>
    </>
   )
