@@ -8,6 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 const server = require("http").createServer(app);
+require("./connection")
 const PORT = 5000;
 const socket = require("socket.io")(server, {
     cors: {
