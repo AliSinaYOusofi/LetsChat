@@ -21,3 +21,5 @@ router.post("/signup", async (req, res) => {
         res.status(400).json(msg);
     }
 });
+
+module.exports = router;
