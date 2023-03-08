@@ -31,8 +31,42 @@ const UserModel = new mongoose.Schema({
     status: {
         type: String,
         default: "online"
+    },
+    newMessages: {
+        type: Object,
+        default: {}
     }
-});
+}, {minimize: false});
 
+// pre save middleware
+UserModel.pre("save", function(next) {
+    const user = this;
+    // before saving hash user password
+    if (!user.isModified("password")) return next();
+    bcrypt.genSalt(10, function (error, salt) {
+        if (error) return next(error);
+
+        bcrypt.hash(user.password, salt, function(error, hash) {
+            if (error) return next(error);
+            user.password = hash;
+            next();
+        });
+    });
+})
+UserModel.static.findByCredentials = async (email, password) => {
+    const user = await User.findOne({email});
+    if (!user) throw new Error("Invalid email or password");
+    
+    let alreadyExisting = await bcrypt.compare(password, user.password);
+    if (!alreadyExisting) throw new Error("Invalid email or password");
+    return user;
+}
+
+UserModel.methods.toJson = function () {
+    const user = this;
+    const userObject = user.toObject();
+    delete userObject.password; // no need for password.
+    return userObject;
+}
 const User = mongoose.model("User", UserModel);
 module.exports = User;
