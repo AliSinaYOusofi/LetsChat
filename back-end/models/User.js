@@ -52,7 +52,11 @@ UserModel.pre("save", function(next) {
             next();
         });
     });
-})
+});
+
+UserModel.static.userAlreadyRegistered = async(email) => {
+    return ! await User.findOne({email}) ? false : true;
+}
 UserModel.static.findByCredentials = async (email, password) => {
     const user = await User.findOne({email});
     if (!user) throw new Error("Invalid email or password");
