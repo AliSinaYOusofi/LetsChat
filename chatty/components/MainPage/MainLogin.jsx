@@ -2,6 +2,7 @@
 
 import { emailValidator } from "@/validators/emailValidator";
 import { passwordValidator } from "@/validators/passwordValidator";
+import axios from "axios";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
@@ -26,9 +27,17 @@ export default function MainLogin () {
         }
     }
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (! emailValidator(email)) return toast.error("invalid email provided.");
         else if (! passwordValidator(password))  return toast.error("please provide a password.");
+
+        // sending to backend
+        try {
+            const response = await axios.post("http://localhost:5000/user/login", {email, password});
+            console.log(response.data.message);
+        } catch (error) {
+            console.log("Error While checking user creds: %s", error);
+        }
     }
 
     return (
