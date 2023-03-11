@@ -28,6 +28,10 @@ router.post("/login", async (req, res) => {
     console.log("got one", req.body);
     const {email, password} = req.body;
     
+});
+
+router.post("/message", async (req, res) => {
+    console.log("rececving message" + req.body.message);
 })
 
 module.exports = router;
