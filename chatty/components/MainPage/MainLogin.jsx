@@ -37,6 +37,7 @@ export default function MainLogin () {
             console.log(response.data.message);
         } catch (error) {
             console.log("Error While checking user creds: %s", error);
+            console.log("Error in Login Comp")
         }
     }
 

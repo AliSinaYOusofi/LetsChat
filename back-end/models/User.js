@@ -39,6 +39,9 @@ const UserModel = new mongoose.Schema({
 }, {minimize: false});
 
 // pre save middleware
+
+// before saving hash the user password
+// nice place to hash it
 UserModel.pre("save", function(next) {
     const user = this;
     // before saving hash user password
